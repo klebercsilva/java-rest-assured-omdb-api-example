@@ -3,15 +3,15 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.example</groupId>
-	<artifactId>automation-demo</artifactId>
+	<artifactId>java-restassured-omdb-api-example</artifactId>
 	<version>1.0-SNAPSHOT</version>
-	<name>RestAssured OMDb (Open Movie Database) API Automation Sample</name>
+	<name>API Testing with RestAssured using OMDb (Open Movie Database)</name>
 
 	<properties>
 		<rest-assured.version>4.2.0</rest-assured.version>
 		<testng.version>7.1.0</testng.version>
 		<log4j.version>2.13.2</log4j.version>
-		<cucumber.version>4.8.1</cucumber.version>
+		<cucumber.version>6.2.2</cucumber.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -45,6 +45,7 @@
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-core</artifactId>
 			<version>${cucumber.version}</version>
+			<scope>test</scope>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
@@ -52,12 +53,14 @@
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-java</artifactId>
 			<version>${cucumber.version}</version>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-testng</artifactId>
 			<version>${cucumber.version}</version>
+			<scope>test</scope>
 			<exclusions>
 				<exclusion>
 					<groupId>junit</groupId>
