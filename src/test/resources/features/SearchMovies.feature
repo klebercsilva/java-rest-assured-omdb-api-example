@@ -9,7 +9,7 @@ Feature: Search for Movies
 
     Examples:
       | apiKey   | movieId   |
-      | XXXXXXXX | tt0848228 |
+      | abc12345 | tt0848228 |
 
   Scenario Outline: Search Movie By Title
     Given I am authenticated with "<apiKey>"
@@ -18,7 +18,7 @@ Feature: Search for Movies
 
     Examples:
       | apiKey   | movieTitle |
-      | XXXXXXXX | Avengers   |
+      | abc12345 | Avengers   |
 
   Scenario Outline: Search Movie By Year And Title
     Given I am authenticated with "<apiKey>"
@@ -27,4 +27,9 @@ Feature: Search for Movies
 
     Examples:
       | apiKey   | movieYear | movieTitle |
-      | XXXXXXXX | 2012      | Avengers   |
+      | abc12345 | 2012      | Avengers   |
+
+
+
+
+    
