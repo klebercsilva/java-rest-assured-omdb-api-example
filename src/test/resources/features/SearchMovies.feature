@@ -1,21 +1,30 @@
-Feature: Search for movies
-  [As a user] I want to search for movies using the OMDb API
+@Regression @SearchMovies
+Feature: Search for Movies
+  [As a User] I want to search for movies using the OMDb API
 
-  Scenario: Authenticate User
-    Given I authenticate with valid api key ""
+  Scenario Outline: Search Movie By Id
+    Given I am authenticated with "<apiKey>"
+    When I search movie by id "<movieId>"
     Then the status code is 200
 
-  Scenario: Search For Movie By Id
-    Given I am authenticated
-    When I search for movie by id "tt0848228"
+    Examples:
+      | apiKey   | movieId   |
+      | XXXXXXXX | tt0848228 |
+
+  Scenario Outline: Search Movie By Title
+    Given I am authenticated with "<apiKey>"
+    When I search movie by title "<movieTitle>"
     Then the status code is 200
 
-  Scenario: Search For Movie By Name
-    Given I am authenticated
-    When I search for movie by name "Avengers"
+    Examples:
+      | apiKey   | movieTitle |
+      | XXXXXXXX | Avengers   |
+
+  Scenario Outline: Search Movie By Year And Title
+    Given I am authenticated with "<apiKey>"
+    When I search movie by year released "<movieYear>" and title "<movieTitle>"
     Then the status code is 200
 
-  Scenario: Search For Movie By Id And Name
-    Given I am authenticated
-    When I search for movie by id "tt0848228" and name "Avengers"
-    Then the status code is 200
+    Examples:
+      | apiKey   | movieYear | movieTitle |
+      | XXXXXXXX | 2012      | Avengers   |

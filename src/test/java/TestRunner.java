@@ -1,9 +1,11 @@
-import io.cucumber.testng.CucumberFeatureWrapper;
 import io.cucumber.testng.CucumberOptions;
 import io.cucumber.testng.CucumberOptions.SnippetType;
-import io.cucumber.testng.PickleEventWrapper;
+import io.cucumber.testng.FeatureWrapper;
+import io.cucumber.testng.PickleWrapper;
 import io.cucumber.testng.TestNGCucumberRunner;
 import io.restassured.RestAssured;
+import io.restassured.filter.log.RequestLoggingFilter;
+import io.restassured.filter.log.ResponseLoggingFilter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -14,8 +16,8 @@ import org.testng.annotations.Test;
 		snippets = SnippetType.CAMELCASE,
 		plugin = {
 		"pretty",
-				"html:target/cucumber-reports/testResult.html",
-				"json:target/cucumber-reports/testResult.json",
+				"html:target/cucumber-html/index.html",
+				"json:target/cucumber-html/index.json",
 		})
 
 public class TestRunner {
@@ -26,11 +28,13 @@ public class TestRunner {
 	public void setUpClass() {
 		RestAssured.baseURI = "http://www.omdbapi.com";
 		testNGCucumberRunner = new TestNGCucumberRunner(this.getClass());
+		//	Uncomment this section to enable logging
+		//	RestAssured.filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
 	}
 
 	@Test(groups = "cucumber", description = "Run Cucumber Scenario", dataProvider = "scenarios")
-	public void scenario(PickleEventWrapper pickleEventWrapper, CucumberFeatureWrapper cucumberFeatureWrapper) throws Throwable {
-		testNGCucumberRunner.runScenario(pickleEventWrapper.getPickleEvent());
+	public void scenario(PickleWrapper pickleEventWrapper, FeatureWrapper featureWrapper) throws Throwable {
+		testNGCucumberRunner.runScenario(pickleEventWrapper.getPickle());
 	}
 
 	@DataProvider

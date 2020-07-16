@@ -1,8 +1,8 @@
 package stepdefs;
 
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.When;
-import cucumber.api.java.en.Then;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.When;
+import io.cucumber.java.en.Then;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
@@ -10,17 +10,13 @@ import static org.testng.Assert.assertEquals;
 
 public class SearchMovieSteps {
 
-    String apiKey;
-    Response response;
+    private String apiKey;
+    private Response response;
 
-    @Given("I authenticate with valid api key {string}")
-    public void iAuthenticateWithValidApiKey(String apiKey) {
+    @Given("^I am authenticated with \"([^\"]*)\"$")
+    public void iAmAuthenticated(String apiKey) {
         this.apiKey = apiKey;
-    }
-
-    @Given("I am authenticated")
-    public void iAmAuthenticated() {
-        response = given().param("apiKey",apiKey).when().get("/");
+        response = given().param("apiKey", apiKey).when().get("/");
     }
     
     @Then("the status code is {int}")
@@ -28,18 +24,18 @@ public class SearchMovieSteps {
         assertEquals(response.getStatusCode(), statusCode);
     }
 
-    @When("I search for movie by id {string}")
+    @When("^I search movie by id \"([^\"]*)\"$")
     public void iSearchForMovieById(String movieId) {
         response = given().param("apiKey", apiKey).param("i", movieId).when().get("/");
     }
 
-    @When("I search for movie by name {string}")
-    public void iSearchForMovieByName(String movieName) {
-        response = given().param("apiKey", apiKey).param("t", movieName).when().get("/");
+    @When("^I search movie by title \"([^\"]*)\"$")
+    public void iSearchForMovieByTitle(String movieTitle) {
+        response = given().param("apiKey", apiKey).param("t", movieTitle).when().get("/");
     }
 
-    @When("I search for movie by id {string} and name {string}")
-    public void iSearchForMovieByIdAndName(String movieId, String movieName) {
-        response = given().param("apiKey", apiKey).param("i", movieId).param("t", movieName).when().get("/");
+    @When("^I search movie by year released \"([^\"]*)\" and title \"([^\"]*)\"$")
+    public void iSearchForMovieByYearAndTitle(String yearReleased, String movieTitle) {
+        response = given().param("apiKey", apiKey).param("i", yearReleased).param("t", movieTitle).when().get("/");
     }
 }
