@@ -17,5 +17,6 @@
  Open a terminal and run:
 
      mvn test
-     
-![Test Run Result](https://i.imgur.com/LTQZN8Y.png)
+![ExtentReports Spark Report Dashboard](https://i.imgur.com/sYWkINF.png)     
+![ExtentReports Spark Report Features](https://i.imgur.com/RSy01ZD.png)     
+![TestNG Result](https://i.imgur.com/LTQZN8Y.png)

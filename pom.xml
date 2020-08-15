@@ -11,7 +11,9 @@
 		<rest-assured.version>4.2.0</rest-assured.version>
 		<testng.version>7.1.0</testng.version>
 		<log4j.version>2.13.2</log4j.version>
-		<cucumber.version>6.2.2</cucumber.version>
+		<cucumber.version>5.7.0</cucumber.version>
+		<extent-reports.version>5.0.3</extent-reports.version>
+		<extentreports-cucumber5-adapter.version>1.4.0</extentreports-cucumber5-adapter.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -67,6 +69,19 @@
 					<artifactId>junit</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.aventstack</groupId>
+			<artifactId>extentreports</artifactId>
+			<version>${extent-reports.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>tech.grasshopper</groupId>
+			<artifactId>extentreports-cucumber5-adapter</artifactId>
+			<version>${extentreports-cucumber5-adapter.version}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 	<!--  Maven Plugins -->

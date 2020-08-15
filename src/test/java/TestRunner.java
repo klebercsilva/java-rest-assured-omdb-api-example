@@ -4,8 +4,6 @@ import io.cucumber.testng.FeatureWrapper;
 import io.cucumber.testng.PickleWrapper;
 import io.cucumber.testng.TestNGCucumberRunner;
 import io.restassured.RestAssured;
-import io.restassured.filter.log.RequestLoggingFilter;
-import io.restassured.filter.log.ResponseLoggingFilter;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -14,15 +12,17 @@ import org.testng.annotations.Test;
 @CucumberOptions (features = "src/test/resources/features",
 		glue = "stepdefs",
 		snippets = SnippetType.CAMELCASE,
-		plugin = {
-		"pretty",
-				"html:target/cucumber-html/index.html",
-				"json:target/cucumber-html/index.json",
-		})
+		plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"})
 
 public class TestRunner {
 
 	private TestNGCucumberRunner testNGCucumberRunner;
+
+	static {
+		System.setProperty("extent.reporter.spark.start", "true");
+		System.setProperty("extent.reporter.spark.config", "src/main/resources/config/spark-config.xml");
+		System.setProperty("extent.reporter.spark.out", "test-output/SparkReport/Index.html");
+	}
 
 	@BeforeClass(alwaysRun = true)
 	public void setUpClass() {
