@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 @CucumberOptions (features = "src/test/resources/features",
 		glue = "stepdefs",
 		snippets = SnippetType.CAMELCASE,
-		plugin = {"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"})
+		plugin = {"io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm"})
 
 public class TestRunner {
 
