@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+group = 'com.example'
+version = '1.0-SNAPSHOT'
+
+description = 'API Testing with RestAssured using OMDb (Open Movie Database)'
+
+ext {
+    log4j = '2.13.2'
+    testng = '7.4.0'
+    cucumber = '6.11.0'
+    rest_assured = '4.2.0'
+    allure = '2.14.0'
+}
+
+dependencies {
+    testImplementation "io.rest-assured:rest-assured:$rest_assured"
+    testImplementation "org.testng:testng:$testng"
+    testImplementation "org.apache.logging.log4j:log4j-core:$log4j"
+    implementation "io.cucumber:cucumber-core:$cucumber"
+    implementation "io.cucumber:cucumber-java:$cucumber"
+    implementation "io.cucumber:cucumber-testng:$cucumber"
+    implementation "io.qameta.allure:allure-cucumber6-jvm:$allure"
+}
+
+test {
+    useTestNG() {
+        suites("testng.xml")
+    }
+    reports.html.enabled(false)
+    systemProperties(System.properties)
+    scanForTestClasses = false
+    testLogging.showStandardStreams = true
+}
